@@ -5,23 +5,29 @@ import BookList from './components/BookList.js'
 import Header from './components/Header.js'
 
 class ListBooks extends React.Component {
-    // state = {
-    //   /**
-    //    * TODO: Instead of using this state variable to keep track of which page
-    //    * we're on, use the URL in the browser's address bar. This will ensure that
-    //    * users can use the browser's back and forward buttons to navigate between
-    //    * pages, as well as provide a good URL they can bookmark and share.
-    //    */
-    //   showSearchPage: true
-    // }
 
-    
+
     render() {
-      
+        const books = this.props.books
         return (
-            <div className="app">
-                <Header />
-                <BookList {...this.props} />
+           <div>
+               <Header />
+                <div className="list-books">
+                    <BookList
+                        title='Currently Reading'
+                        {...this.props}
+                        books={books.filter((book) => book.shelf === 'currentlyReading')} />
+
+                    <BookList
+                        title='Want to Read'
+                        {...this.props}
+                        books={books.filter((book) => book.shelf === 'wantToRead')} />
+
+                    <BookList
+                        title='Read'
+                        {...this.props}
+                        books={books.filter((book) => book.shelf === 'read')} />
+                </div>
             </div>
         )
     }

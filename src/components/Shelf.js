@@ -14,16 +14,17 @@ class Shelf extends React.Component {
     render() {
         const book = this.props;
         return (
+            <div className="book-shelf-changer">
+                <select   value={book.shelf} onChange={(event) => this.handleChange(book, event.target.value)}>
 
-            <select value={book.shelf} onChange={(event) => this.handleChange(book, event.target.value)}>
-                
-                <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
+                    <option value="none" disabled>Move to...</option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option selected="none">None</option>
 
-            </select>
+                </select>
+            </div>
 
         )
     }

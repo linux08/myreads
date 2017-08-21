@@ -6,6 +6,7 @@ class SearchResult extends React.Component {
     render() {
         const book = this.props.searchResult
         console.log('search result')
+        console.log(this.props.searchResult)
         console.log(book.length)
 
         let searchComponent = book.map((b, index) => {
@@ -14,21 +15,21 @@ class SearchResult extends React.Component {
             }
             else {
                 return (
-                    <div className="list-books-search">
+                    <div className="list-books-search" key={index} >
 
                         <div className="list-books-content">
                             <div >
                                 <div className="bookshelf">
                                     <div>
                                         <ol className="books-grid">
-                                            <li key={index}>
+                                            <li >
                                                 <div className="book">
                                                     <div className="book-top">
-                                                        <div className="book-cover"><img src={b.imageLinks.smallThumbnail} alt="book.title" /></div>
-                                                        <div className="book-shelf-changer">
-                                                            <Shelf {...this.props}
-                                                            />
-                                                        </div>
+                                                        <div className="book-cover"><img  src={b.imageLinks.smallThumbnail} alt="book.title" /></div>
+
+                                                        <Shelf {...this.props}
+                                                            {...b}
+                                                        />
                                                     </div>
                                                     <div className="book-title">{b.title}</div>
                                                     <div className="book-authors">{b.authors}</div>

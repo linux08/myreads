@@ -24,6 +24,10 @@ class App extends Component {
 
   updateBook = (book, shelf) => {
 
+    const booksInState = this.state.books
+    console.log('book place')
+    console.log(book)
+
     BooksAPI.update(book, shelf)
       .then((books) => {
         console.log(books)
@@ -33,6 +37,9 @@ class App extends Component {
           return b
         })
         this.setState({ books: updatedBook })
+        console.log('ghjk')
+        
+        console.log(this.state.books)
       })
       .catch((err) => (
         console.log(err)))
@@ -41,6 +48,9 @@ class App extends Component {
 
   searchBook = (query, maxresult) => {
     BooksAPI.search(query, maxresult).then((resp) => {
+      if (resp.error) {
+        this.setState({ searchResult: [] })
+      }
       this.setState({ searchResult: resp })
       console.log(resp)
     })
@@ -50,21 +60,11 @@ class App extends Component {
 
   }
 
-  // searchAndUpdate = (book, shelf) => {
-  //   BooksAPI.update(book, shelf)
-  //     .then((books) => {
-  //       console.log(books)
-  //       let updatedBook = this.state.books.map(b => {
-  //         if (b.id === book.id)
-  //           b.shelf = shelf
-  //         return b
-  //       })
-  //       this.setState({ books: updatedBook })
-  //     })
-  //     .catch((err) => (
-  //       console.log(err)))
+  searchAndUpdate = (book, shelf) => {
 
-  // }
+    this.setState({ books: Object.assign(this.state.books, book) })
+
+  }
 
   render() {
     console.log(this.state);
