@@ -140,8 +140,6 @@ body,
   width: 140px;
 }
 
-
-
 .book-title,
 .book-authors {
   font-size: 0.8em;
@@ -187,6 +185,10 @@ body,
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+.highlight-shelf {
+  font-weight: bold;
 }
 
 

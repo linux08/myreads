@@ -9,6 +9,13 @@ class SearchResult extends React.Component {
         console.log(this.props.searchResult)
         console.log(book.length)
 
+
+        if (book.length == undefined) {
+            let searchComponent =
+                <div >
+                </div >
+
+        }
         let searchComponent = book.map((b, index) => {
             if (b.length == 0 || undefined) {
                 return
@@ -25,7 +32,7 @@ class SearchResult extends React.Component {
                                             <li >
                                                 <div className="book">
                                                     <div className="book-top">
-                                                        <div className="book-cover"><img  src={b.imageLinks.smallThumbnail} alt="book.title" /></div>
+                                                        <div className="book-cover"><img src={b.imageLinks.smallThumbnail} alt="book.title" /></div>
 
                                                         <Shelf {...this.props}
                                                             {...b}

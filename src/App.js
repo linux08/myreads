@@ -37,9 +37,6 @@ class App extends Component {
           return b
         })
         this.setState({ books: updatedBook })
-        console.log('ghjk')
-        
-        console.log(this.state.books)
       })
       .catch((err) => (
         console.log(err)))
@@ -47,29 +44,28 @@ class App extends Component {
   }
 
   searchBook = (query, maxresult) => {
+
+    if (query == '') {
+      this.setState({ searchResult: [] })
+    }
     BooksAPI.search(query, maxresult).then((resp) => {
-      if (resp.error) {
-        this.setState({ searchResult: [] })
-      }
+
       this.setState({ searchResult: resp })
       console.log(resp)
     })
       .catch((err) => {
+        this.setState({ searchResult: [] })
         console.log(err);
       })
 
-  }
-
-  searchAndUpdate = (book, shelf) => {
-
-    this.setState({ books: Object.assign(this.state.books, book) })
 
   }
+
 
   render() {
     console.log(this.state);
     return (
-      <div className="app">
+      <div className="app" >
         <Route exact path="/" render={() => (
           <ListBooks {...this.state}
             updateBook={this.updateBook} />
@@ -85,7 +81,7 @@ class App extends Component {
             updateBook={this.updateBook} />
         )}
         />
-      </div>
+      </div >
     )
   }
 }
