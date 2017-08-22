@@ -29,7 +29,7 @@ class BookList extends React.Component {
                                         <li key={index}>
                                             <div className="book">
                                                 <div className="book-top">
-                                                    <div className="book-cover"><img src={book.imageLinks.smallThumbnail} alt="book.title" /></div>
+                                                    <div className="book-cover"><img src={book.imageLinks.smallThumbnail} alt="book.title"  className="book-cover-image"/></div>
                                                     <Shelf {...this.props}
                                                         {...book} />
 

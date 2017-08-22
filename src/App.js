@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import debounce from 'debounce'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks.js'
@@ -25,8 +26,6 @@ class App extends Component {
   updateBook = (book, shelf) => {
 
     const booksInState = this.state.books
-    console.log('book place')
-    console.log(book)
 
     BooksAPI.update(book, shelf)
       .then((books) => {
@@ -45,18 +44,31 @@ class App extends Component {
 
   searchBook = (query, maxresult) => {
 
-    if (query == '') {
-      this.setState({ searchResult: [] })
-    }
-    BooksAPI.search(query, maxresult).then((resp) => {
 
+    debounce(BooksAPI.search(query, maxresult).then((resp) => {
+
+    
+      if (query === '') {
+        this.setState({ searchResult: [] })
+      }
       this.setState({ searchResult: resp })
-      console.log(resp)
     })
       .catch((err) => {
         this.setState({ searchResult: [] })
         console.log(err);
+      }), 2000)
+
+     let bookInShelf = this.state.books.map( shelvedBooks => shelvedBooks.id )
+      let searchResult = this.state.searchResult.map( notInShelf  => notInShelf.id )
+
+      let shelfMatch = bookInShelf.map(a => this.state.searchResult.map( b => {
+        if(b.id === a.id){
+          a.shelf = b.shelf
+          
+        }
       })
+
+      )
 
 
   }

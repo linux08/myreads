@@ -13,6 +13,7 @@ class Book extends React.Component {
         BooksAPI.get(bookid)
             .then((book) => {
                 this.setState({ book })
+                console.log(this.state.book);
             })
             .catch((error) => {
                 console.log(error)
@@ -20,39 +21,52 @@ class Book extends React.Component {
 
     }
 
-    getbook = () => {
-
-    }
-
     render() {
         // this.getbook()
-        const book = this.state;
-        console.log(book)
+        const book = this.state.book;
+        let img = book.imageLinks
+     //   console.log(Object.keys(img))
+        // for(var key in img) {
+        //     const value = img[key];
+        //     console.log(value)
+        //     break;
+        // }
+
+        
+
+       
+        
+        //console.log(img.thumbnail)
         return (
-            <div className="list-books-search">
 
-                <div className="list-books-content">
-                    <div >
-                        <div className="bookshelf">
-                            <div>
 
-                                <div className="book">
-                                    <div className="book-top">
-                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                        <div className="book-shelf-changer">
-                                            <Shelf {...this.props}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.authors}</div>
-                                    <div> {book.description} </div>
+            <div className="list-books-content">
+                <div >
+                    <div className="bookshelf">
+
+                        <h2 className="bookshelf-title">{book.title}</h2>
+                        <div>{
+                            
+
+                        <div className="book-cover"><img src={img} alt={book.title}  className="book-cover-image"/></div>
+                        }
+                            <div className="book">
+                                <div className="book-top">
+                                    <Shelf {...this.props}
+                                        {...book}
+                                    />
                                 </div>
+
+                                <div className="book-title">TITLE:{book.title}</div>
+                                <div className="book-authors">AUTHOR:{book.authors}</div>
+                                <div> Publisher:{book.publisher} </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
         )
     }
 }
