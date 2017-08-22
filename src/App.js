@@ -42,34 +42,29 @@ class App extends Component {
 
   }
 
+
+
   searchBook = (query, maxresult) => {
 
+    if (query === '') {
+      this.setState({ searchResult: [] })
+    }
+    else {
+      debounce(BooksAPI.search(query, maxresult).then(resp => {
+        this.setState({ searchResult: resp })
 
-    debounce(BooksAPI.search(query, maxresult).then((resp) => {
-
-    
-      if (query === '') {
-        this.setState({ searchResult: [] })
-      }
-      this.setState({ searchResult: resp })
-    })
-      .catch((err) => {
-        this.setState({ searchResult: [] })
-        console.log(err);
-      }), 2000)
-
-     let bookInShelf = this.state.books.map( shelvedBooks => shelvedBooks.id )
-      let searchResult = this.state.searchResult.map( notInShelf  => notInShelf.id )
-
-      let shelfMatch = bookInShelf.map(a => this.state.searchResult.map( b => {
-        if(b.id === a.id){
-          a.shelf = b.shelf
-          
-        }
+        let idMatch = this.state.books.map(a => this.state.searchResult.map(b => {
+          if (b.id === a.id) {
+            b.shelf = a.shelf
+          }
+          return b
+        }))
+        
       })
-
-      )
-
+        .catch((err) => {
+          console.log(err);
+        }), 2000)
+    }
 
   }
 

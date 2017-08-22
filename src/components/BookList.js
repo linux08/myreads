@@ -8,16 +8,12 @@ class BookList extends React.Component {
     state = {
         shelfName: ''
     }
-    getBook = (event) => {
-        this.props.getBook(event)
-
-    }
+   
 
     render() {
             console.log(this.props)
             const { books, title } = this.props
         return (
-            // <div className="list-books">
             <div>
                 <div className="list-books-content">
                     <div>

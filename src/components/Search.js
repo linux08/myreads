@@ -17,7 +17,6 @@ class Search extends Component {
     handleUpdate(event, maxresult) {
         const match = new RegExp(escapeRegExp(event), 'i')
         console.log(match)
-        //console.log(event)
         this.setState({ searchField: event })
         this.props.searchBook(event, maxresult)
     }
