@@ -25,7 +25,23 @@ class App extends Component {
 
   updateBook = (book, shelf) => {
 
-    const booksInState = this.state.books
+    const booksInState = this.state.searchResult.map(b => {
+      if (b.id === book.id)
+        b.shelf = shelf
+      return b
+    })
+    console.log('state after updating')
+    console.log(this.state);
+    this.setState({ searchResult: booksInState })
+
+
+    const books = this.state.books.map(b => {
+      if (b.id === book.id)
+        b.shelf = shelf
+      return b
+    })
+
+    this.setState({ books })
 
     BooksAPI.update(book, shelf)
       .then((books) => {
@@ -35,11 +51,11 @@ class App extends Component {
             b.shelf = shelf
           return b
         })
-        this.setState({ books: updatedBook })
+        // this.setState({ books: updatedBook })
       })
       .catch((err) => (
         console.log(err)))
-
+        this.setState({ books })
   }
 
 
@@ -57,9 +73,10 @@ class App extends Component {
           if (b.id === a.id) {
             b.shelf = a.shelf
           }
+
           return b
         }))
-        
+        this.setState({ searchResult: resp })
       })
         .catch((err) => {
           console.log(err);

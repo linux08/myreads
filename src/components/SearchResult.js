@@ -4,6 +4,7 @@ import Shelf from './Shelf.js'
 class SearchResult extends React.Component {
 
     render() {
+        console.log(this.props)
         const book = this.props.searchResult
 
         return (
@@ -17,9 +18,8 @@ class SearchResult extends React.Component {
                                         <div className="book-top">
                                             <div className="book-cover"><img src={b.imageLinks.smallThumbnail} alt="book.title" className="book-cover-image" /></div>
 
-                                            <Shelf {...this.props}
-                                                {...b}
-                                            />
+                                            <Shelf updateBook={this.props.updateBook}
+                                                {...b} />
                                         </div>
                                         <div className="book-title">{b.title}</div>
                                         <div className="book-authors">{b.authors}</div>
