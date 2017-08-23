@@ -40,7 +40,7 @@ class Book extends React.Component {
                             </div>
 
                             <div className="book-title">TITLE:{book.title}</div>
-                            <div className="book-authors">AUTHOR:{book.authors}</div>
+                            <div className="book-authors">AUTHOR:{book.authors ? book.authors.join(','): ''}</div>
                             <div> Publisher:{book.publisher} </div>
 
                         </div>
