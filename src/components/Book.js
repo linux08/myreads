@@ -16,7 +16,6 @@ class Book extends React.Component {
                 this.setState({ book })
             })
             .catch((error) => {
-                //console.log(error)
             })
 
     }

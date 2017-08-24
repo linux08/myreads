@@ -5,10 +5,6 @@ import Shelf from './Shelf.js'
 
 class BookList extends React.Component {
 
-    state = {
-        shelfName: ''
-    }
-   
 
     render() {
             console.log(this.props)

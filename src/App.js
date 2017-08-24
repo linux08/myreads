@@ -51,7 +51,6 @@ class App extends Component {
             b.shelf = shelf
           return b
         })
-        // this.setState({ books: updatedBook })
       })
       .catch((err) => (
         console.log(err)))
@@ -87,7 +86,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       <div className="app" >
         <Route exact path="/" render={() => (

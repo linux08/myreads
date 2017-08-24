@@ -9,14 +9,12 @@ class Search extends Component {
 
     state = {
         searchField: '',
-        // searchResult: ''
     }
 
 
 
     handleUpdate(event, maxresult) {
         const match = new RegExp(escapeRegExp(event), 'i')
-        console.log(match)
         this.setState({ searchField: event })
         this.props.searchBook(event, maxresult)
     }
