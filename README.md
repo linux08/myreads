@@ -1,6 +1,6 @@
 MyReads : A book tracking app
 Udacity React Nanodegree Project 1.
-This is the my  project for the udacity React Nanodegree.
+This is  the  first project for my udacity React Nanodegree course.
 
 This app helps you to organize books,there are three shelfs  in the app which are : currently reading, want to read, read.
 You select the shelfs you want the book to belong to and then the app rerenders by placing the book in the shelf you selected.
